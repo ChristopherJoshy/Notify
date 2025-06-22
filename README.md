@@ -13,7 +13,7 @@
 
 **A powerful, modern note-taking application built with React, TypeScript, and MongoDB**
 
-[Features](#features) • [Tech Stack](#tech-stack) • [Installation](#installation) • [Usage](#usage) • [API Documentation](#api-documentation) • [Roadmap](#roadmap) • [Contributing](#contributing) • [License](#license)
+[Features](#features) • [Tech Stack](#tech-stack) • [Installation](#installation) • [Deployment](#deployment) • [Usage](#usage) • [API Documentation](#api-documentation) • [Roadmap](#roadmap) • [Contributing](#contributing) • [License](#license)
 
 </div>
 
@@ -95,6 +95,39 @@ npm run dev
 ```
 
 The application will be available at [http://localhost:3000](http://localhost:3000)
+
+## 🌩️ Deployment
+
+### Deploying to Render
+
+Notify is configured for easy deployment on [Render](https://render.com/):
+
+1. **Create a Render account** if you don't already have one
+
+2. **Create a new Web Service** on Render
+   - Connect your GitHub repository
+   - Select the "Notify" repository
+
+3. **Configure the service**:
+   - **Name**: `notify` (or your preferred name)
+   - **Environment**: `Node`
+   - **Build Command**: `npm install && npm run build`
+   - **Start Command**: `npm run start`
+
+4. **Add Environment Variables**:
+   - `NODE_ENV`: `production`
+   - `PORT`: `10000` (or Render's default)
+   - `MONGODB_URI`: Your MongoDB connection string
+
+5. **Deploy the service**:
+   - Click "Create Web Service"
+   - Render will automatically deploy your application
+
+The application uses the `render.yaml` file for Blueprint deployments, allowing you to quickly deploy the entire stack.
+
+### Health Checks
+
+The application includes a `/api/health` endpoint that Render uses to monitor the application's health. This endpoint checks the MongoDB connection and returns a status code indicating whether the service is functioning properly.
 
 ## 📊 Project Structure
 

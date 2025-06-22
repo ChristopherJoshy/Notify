@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: notify
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        sync: false # This will be set up in the Render dashboard as a secret
+    autoDeploy: true
+    healthCheckPath: /api/health 

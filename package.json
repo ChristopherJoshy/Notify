@@ -1,5 +1,5 @@
 {
-  "name": "rest-express",
+  "name": "notify",
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
@@ -7,6 +7,7 @@
     "dev": "tsx server/index.ts",
     "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
     "start": "node dist/index.js",
+    "postbuild": "node server/db-init.js",
     "check": "tsc",
     "db:push": "drizzle-kit push",
     "db:init": "node server/db-init.js"
@@ -105,5 +106,8 @@
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.8"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

@@ -153,8 +153,8 @@ export class MongoStorage implements IStorage {
   private notesCollection: Collection<MongoNote> | null = null;
 
   constructor() {
-    // MongoDB connection string
-    const MONGODB_URI = "mongodb+srv://christopherjoshy:Fkak7nuijxr7YhaQ@cluster0.vx54pmn.mongodb.net/";
+    // Get MongoDB connection string from environment variable or use default for local development
+    const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://christopherjoshy:Fkak7nuijxr7YhaQ@cluster0.vx54pmn.mongodb.net/";
     this.connect(MONGODB_URI);
   }
 

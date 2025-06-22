@@ -1,7 +1,8 @@
 import { MongoClient } from 'mongodb';
 
 async function initializeDatabase() {
-  const MONGODB_URI = "mongodb+srv://christopherjoshy:Fkak7nuijxr7YhaQ@cluster0.vx54pmn.mongodb.net/";
+  // Use environment variable or default connection string
+  const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://christopherjoshy:Fkak7nuijxr7YhaQ@cluster0.vx54pmn.mongodb.net/";
   
   console.log("Connecting to MongoDB...");
   const client = new MongoClient(MONGODB_URI);
@@ -72,7 +73,7 @@ async function initializeDatabase() {
         const counter = await countersCollection.findOneAndUpdate(
           { _id: "subjects" },
           { $inc: { sequence: 1 } },
-          { returnDocument: "after", upsert: true }
+          { upsert: true, returnDocument: "after" }
         );
         
         if (counter.value) {

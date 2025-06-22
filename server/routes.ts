@@ -5,6 +5,18 @@ import { insertSubjectSchema, insertNoteSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Health check endpoint for monitoring
+  app.get("/api/health", async (req, res) => {
+    try {
+      // Check MongoDB connection
+      await storage.getSubjects();
+      res.status(200).json({ status: "ok", message: "Service is healthy" });
+    } catch (error) {
+      console.error("Health check failed:", error);
+      res.status(500).json({ status: "error", message: "Service is unhealthy" });
+    }
+  });
+
   // Subject routes
   app.get("/api/subjects", async (req, res) => {
     try {
